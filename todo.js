@@ -1,7 +1,26 @@
 let editingIndex = null; 
+
+(() => {
+    'use strict'
+  
+    const forms = document.querySelectorAll('.needs-validation')
+  
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+  
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
+
 document.getElementById("myForm").addEventListener('submit', function (event) {
     event.preventDefault(); 
-
+    // const form = document.getElementById("myForm");
+    // form.classList.add("")
     const formData = {
         firstName: document.getElementById('fName').value,
         lastName: document.getElementById('lName').value,
